@@ -1,0 +1,17 @@
+body {
+    margin: 40px;
+}
+.tictactoe {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    grid-gap: 10px;
+    background-color: #fff;
+    color: #FFF;
+}
+
+.box {
+    padding: 40px;
+    border-radius: 5px;
+    background-color: #444;
+    font-size: 150%;
+}
