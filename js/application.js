@@ -21,36 +21,42 @@ $(document).ready(function() {
     }
     
     $(".box").click(function() {
+	var winnersResults = [];
+	var winnerResult = false;
+	var winningLog = "Cats Game!"
 	if(xsTurn && $(this).text().includes("_")) {
 	    playingGrid[$(this).index()] = 1 || 0;
 	    $(this).text("X");	    
-	    var winnersResults = [];
 	    winners
 		.forEach(winningRow =>
 			 winnersResults.push(
 			     compareArrays(winningRow,
 					   indexOfEvery(playingGrid, 1))));
-	    console.log("X has Won: "+ winnersResults.some(r => r === true));
+	    winnerResult = winnersResults.some(r => r === true);
+	    if(winnerResult)
+	       var winningLog = "X has Won!";		
 	    xsTurn = !xsTurn;
 	}
 	else if (!xsTurn && $(this).text().includes("_")){
 	    playingGrid[$(this).index()] = 2 || 0;
 	    $(this).text("O");
-	    var winnersResults = [];
 	    winners
 		.forEach(winningRow =>
 			 winnersResults.push(
 			     compareArrays(winningRow,
 					   indexOfEvery(playingGrid, 2))));
-	    console.log("O has Won: "+ winnersResults.some(r => r === true));
+	    winnerResult = winnersResults.some(r => r === true);
+	    if(winnerResult)
+	       var winningLog = "O has Won!";
 	    xsTurn = !xsTurn;
 	}
-	if(isGridFull(playingGrid)) {
-	    console.log("End Game\nXs: " +
-			indexOfEvery(playingGrid, 1) + "\nOs: " +
-			indexOfEvery(playingGrid, 2));
+	if(isGridFull(playingGrid) || winnerResult) {
+	    alert(winningLog + "\n Click OK to begin again");
+	    location.reload();
 	}
     });
+
+    
     function checkWinner() {
     }
     function indexOfEvery(array, value) {
