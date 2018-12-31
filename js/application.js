@@ -56,7 +56,9 @@ $(document).ready(function() {
 	}
     });
 
-    
+    $(".reload").click(function() {
+	location.reload();
+    });
     function checkWinner() {
     }
     function indexOfEvery(array, value) {
