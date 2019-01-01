@@ -17,47 +17,56 @@
 	*/
 	var playingGridDom = $(".tictactoe");
 	var xsTurn = true;
+
 	function compareArrays(a1, a2) {
 	    return $(a1).not(a2).length === 0 &&
 		$(a2).not(a1).length === 0;
 	}
-	
+
+	var winnersResults = [];
+	var winningLog = "";
+	var gameOver = false;
+
 	$(".box").click(function() {
-	    var winnersResults = [];
-	    var winnerResult = false;
-	    var winningLog = "Cats Game!"
+	    if(gameOver)
+		return 0;
 	    if(xsTurn && $(this).text().includes("_")) {
 		playingGrid[$(this).index()] = 1 || 0;
-		$(this).text("X");	    
+		$(this).text("X");
+		xsTurn = !xsTurn;
 		winners
 		    .forEach(winningRow =>
 			     winnersResults.push(
 				 compareArrays(winningRow,
 					       indexOfEvery(playingGrid,
 							    1))));
-		winnerResult = winnersResults.some(r => r === true);
-		if(winnerResult)
+		gameOver = winnersResults.some(r => r === true);
+		console.log(gameOver);
+		if(gameOver)
 		    var winningLog = "X has Won!";		
-		xsTurn = !xsTurn;
 	    }
-	    else if (!xsTurn && $(this).text().includes("_")){
+	    else if (!xsTurn && $(this).text().includes("_")) {
 		playingGrid[$(this).index()] = 2 || 0;
 		$(this).text("O");
+		xsTurn = !xsTurn;
 		winners
 		    .forEach(winningRow =>
 			     winnersResults.push(
 				 compareArrays(winningRow,
 					       indexOfEvery(playingGrid,
 							    2))));
-		winnerResult = winnersResults.some(r => r === true);
-		if(winnerResult)
+		gameOver = winnersResults.some(r => r === true);
+		if(gameOver) 
 		    var winningLog = "O has Won!";
-		xsTurn = !xsTurn;
-	    }
-	    if(isGridFull(playingGrid) || winnerResult) {
-		alert(winningLog + "\n Click OK to begin again");
-		location.reload();
-	    }
+		}
+	    
+		if(gameOver) {
+		    $("h1").text(winningLog);
+		} else if(isGridFull(playingGrid)) {
+		    winningLog = "Cats Game!"
+		    $("h1").text(winningLog);
+		}
+	    
 	});
 
 	$(".reload").click(function() {

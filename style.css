@@ -20,6 +20,11 @@
 	height: 10VH;
 	font-size: 8VH;
     }
+    h1 {
+	width: 92VW;
+	height: 12VH;
+	font-size: 10VH;
+    }
 }
 
 body {
