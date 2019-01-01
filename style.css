@@ -1,24 +1,35 @@
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+body {
+    margin: 40px;
+}
+
+.tictactoe {   
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 2vh;
+    color: #FFF;
+}
+
+.box {
+    padding: 3VW;
+    font-size: 10VH;
+    background-color: #333;
+    color: #fff;	
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width: 1023px) {
     .tictactoe {
-	display: grid;
-	background-color: #0ff;
-	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-rows: 1fr 1fr 1fr;
-	grid-gap: 10px;
 	width: 92VW;
 	height: 53VH;
     }
-    .tictactoe > * {
-	padding: 100%;
-	background-color: #333;
-	font-size: 10VH;
-	color: #fff;
+    .box {
     }
     a > button {
 	margin-top: 3VH;
+	margin-bottom: 3VH;
 	width: 92VW;
 	height: 10VH;
-	font-size: 8VH;
+	font-size: 4VH;
     }
     h1 {
 	width: 92VW;
@@ -26,21 +37,25 @@
 	font-size: 10VH;
     }
 }
-
-body {
-    margin: 40px;
-}
-/*
-.tictactoe {
-    display: grid;
-    grid-template-columns: 100px 100px 100px;
-    grid-gap: 10px;
-    background-color: #fff;
-    color: #FFF;
-}*/
-
-.box {
-    padding: 40px;
-    border-radius: 5px;
-
+@media only screen and (min-device-width : 1024px) {
+    .tictactoe {
+	width: 30VW;
+	height: 55VH;
+    }
+    
+    .box {
+	padding: 10px;
+	background-color: #333;
+    }
+    
+    a > button {
+	font-size: 5vh;
+	padding-top: 10px;
+	margin-top: 10px;
+	width: 30VW;
+    }
+    
+    h1 {
+	font-size: 6VW;
+    }
 }
