@@ -41,7 +41,6 @@
 					       indexOfEvery(playingGrid,
 							    1))));
 		gameOver = winnersResults.some(r => r === true);
-		console.log(gameOver);
 		if(gameOver)
 		    var winningLog = "X has Won!";		
 	    }
