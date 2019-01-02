@@ -133,8 +133,6 @@ function indexOfEvery(array, value) {
       }
       
       $(this).text(expGrid.currentTurn());
-
-      console.log(expGrid.state());
 	  });
 
 	  $(".reload").click(function() {
