@@ -123,7 +123,7 @@ function indexOfEvery(array, value) {
       
       var xy = $(this).index();
       
-      if(expGrid.isItemEmpty(xy)) {
+      if(expGrid.isItemEmpty(xy)) { 
         expGrid.putMove(xy);
       }
       
@@ -135,13 +135,5 @@ function indexOfEvery(array, value) {
 	  $(".reload").click(function() {
 	    location.reload();
 	  });
-	  
-	  function isGridFull(grid) {
-	    for(var i = 0; i < grid.length; ++i) {
-		    if(grid[i] === 0) { return false; }
-	    }
-	    return true;
-	  }
-	  
   });
 }());
