@@ -118,9 +118,14 @@ function indexOfEvery(array, value) {
 			                 0, 0, 0,
 			                 0, 0, 0];	  
 	  $(".box").click(function() {
-      if(expGrid.isGameOver()) 
+      if(expGrid.isWinner()) {
+        $("h1").text(expGrid.isWinner() + " is the winner!");
         return 0; 
-      
+      }
+      if(expGrid.isGridFull()) {
+        $("h1").text("Cats Game!");
+        return 0;
+      }
       var xy = $(this).index();
       
       if(expGrid.isItemEmpty(xy)) { 
@@ -128,7 +133,7 @@ function indexOfEvery(array, value) {
       }
       
       $(this).text(expGrid.currentTurn());
-      
+
       console.log(expGrid.state());
 	  });
 
