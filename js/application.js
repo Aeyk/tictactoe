@@ -7,26 +7,24 @@ function indexOfEvery(array, value) {
 	}
 	return indexes || -1;
 }
-
+function compareArrays(a1, a2) {
+	return $(a1).not(a2).length === 0 &&
+		$(a2).not(a1).length === 0;
+}
 ;(function(){
   'use strict';
 	var grid = function () {
     var _grid = [0, 0, 0,
 			           0, 0, 0,
 			           0, 0, 0];
-    var init = function() {};
-  
     var _winners = [[0, 1, 2], [3, 4, 5], [6, 7, 8],
 		                [0, 3, 6], [1, 4, 7], [2, 5, 8],
 		                [0, 4, 8], [2, 4, 6]];
-    
     var _xsTurn = false;
     var _gameOver = false;
-    
     var state = function() {
       return {..._grid};
     };
-
     var nextTurn = function () {
       _xsTurn = !_xsTurn;
       return _xsTurn;
@@ -50,7 +48,6 @@ function indexOfEvery(array, value) {
       }
       return _grid[xy];
     }
-
     var isWinner = function() {
       var xresult = [];
       _winners
@@ -71,11 +68,9 @@ function indexOfEvery(array, value) {
       else
         return false;
     }
-
     var isGridFull = function() {
       return !(_grid.some(g => g === 0));
     }
-
     var isGameOver = function() {
       var winningState = isWinner();
       if(_gameOver)
@@ -86,10 +81,8 @@ function indexOfEvery(array, value) {
         return winningState;
       
     }
-    
     return {
       state: state,
-      init: init,
       nextTurn: nextTurn,
       currentTurn: currentTurn,
       isItemEmpty: isItemEmpty,
@@ -99,19 +92,6 @@ function indexOfEvery(array, value) {
       isGameOver: isGameOver
     }
   }();
-
-	function compareArrays(a1, a2) {
-	  return $(a1).not(a2).length === 0 &&
-		  $(a2).not(a1).length === 0;
-	}
-	var winners = [[0, 1, 2], [3, 4, 5], [6, 7, 8],
-		             [0, 3, 6], [1, 4, 7], [2, 5, 8],
-		             [0, 4, 8], [2, 4, 6]];
-  var xsTurn = true;
-  var winnersResults = [];
-	var winningLog = "";
-	var gameOver = false;
-
   $(document).ready(function() {
     var expGrid = grid;
     var playingGrid = [0, 0, 0,
@@ -127,14 +107,11 @@ function indexOfEvery(array, value) {
         return 0;
       }
       var xy = $(this).index();
-      
       if(expGrid.isItemEmpty(xy)) { 
         expGrid.putMove(xy);
+        $(this).text(expGrid.currentTurn());
       }
-      
-      $(this).text(expGrid.currentTurn());
 	  });
-
 	  $(".reload").click(function() {
 	    location.reload();
 	  });
