@@ -32,9 +32,17 @@ function compareArrays(a1, a2) {
     var _grid = [0, 0, 0,
 			     0, 0, 0,
 			     0, 0, 0];
-    var _winners = [[0, 1, 2], [3, 4, 5], [6, 7, 8],
-		            [0, 3, 6], [1, 4, 7], [2, 5, 8],
-		            [0, 4, 8], [2, 4, 6]];
+    var _winners =
+    [[0, 1, 2],
+     [3, 4, 5],
+     [6, 7, 8],
+
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+
+    [0, 4, 8],
+    [2, 4, 6]];
     var _xsTurn = false;
     var _gameOver = false;
     var state = function() {
