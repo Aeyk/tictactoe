@@ -1,3 +1,5 @@
+// TODO: Scoreboard, Refractor, Wait before I refactor I need to write a test suite.
+
 /* indexOfEvery takes an array and returns an array with some 0-indexed indexes of
  * said array.
  * For example:
@@ -124,6 +126,7 @@ function compareArrays(a1, a2) {
 	  $(".box").click(function() {
       if(expGrid.isWinner()) {
         $("h1").text(expGrid.isWinner() + " is the winner!");
+        scoreboard.pushWinner(expGrid.isWinner());
         return 0;
       }
       if(expGrid.isGridFull()) {
