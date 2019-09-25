@@ -7,19 +7,23 @@ function indexOfEvery(array, value) {
 	}
 	return indexes || -1;
 }
+// function compareArrays(a1, a2) {
+// 	return $(a1).not(a2).length === 0 &&
+// 		$(a2).not(a1).length === 0;
+// }
+// These should be a better (lazy) way? JSON objects might cause weird errors. TODO: testing
 function compareArrays(a1, a2) {
-	return $(a1).not(a2).length === 0 &&
-		$(a2).not(a1).length === 0;
+    return (JSON.stringify(a1) == JSON.stringify(a2));
 }
 ;(function(){
   'use strict';
 	var grid = function () {
     var _grid = [0, 0, 0,
-			           0, 0, 0,
-			           0, 0, 0];
+			     0, 0, 0,
+			     0, 0, 0];
     var _winners = [[0, 1, 2], [3, 4, 5], [6, 7, 8],
-		                [0, 3, 6], [1, 4, 7], [2, 5, 8],
-		                [0, 4, 8], [2, 4, 6]];
+		            [0, 3, 6], [1, 4, 7], [2, 5, 8],
+		            [0, 4, 8], [2, 4, 6]];
     var _xsTurn = false;
     var _gameOver = false;
     var state = function() {
@@ -36,7 +40,7 @@ function compareArrays(a1, a2) {
         return "O";
     }
     var isItemEmpty = function(xy) {
-      if(_grid[xy] === 0) 
+      if(_grid[xy] === 0)
         return true;
       else
         return false;
@@ -55,6 +59,7 @@ function compareArrays(a1, a2) {
           row => xresult.push(compareArrays(row,
                                             indexOfEvery(_grid,
                                                          "X"))));
+                                                         /* This is the same array and manipulation, it should be extracted out and named / DRY'd */
       var oresult = [];
       _winners
         .forEach(
@@ -68,7 +73,7 @@ function compareArrays(a1, a2) {
       else
         return false;
     }
-    var isGridFull = function() {
+    var isGridFull = function() {   // Do none of the items in _grid === 0, and 0 is the magic number for unplaced TODO: make constant for magic number
       return !(_grid.some(g => g === 0));
     }
     var isGameOver = function() {
@@ -79,7 +84,7 @@ function compareArrays(a1, a2) {
         return true;
       if(isWinner())
         return winningState;
-      
+
     }
     return {
       state: state,
@@ -95,19 +100,19 @@ function compareArrays(a1, a2) {
   $(document).ready(function() {
     var expGrid = grid;
     var playingGrid = [0, 0, 0,
-			                 0, 0, 0,
-			                 0, 0, 0];	  
+                       0, 0, 0,
+			           0, 0, 0];
 	  $(".box").click(function() {
       if(expGrid.isWinner()) {
         $("h1").text(expGrid.isWinner() + " is the winner!");
-        return 0; 
+        return 0;
       }
       if(expGrid.isGridFull()) {
         $("h1").text("Cats Game!");
         return 0;
       }
       var xy = $(this).index();
-      if(expGrid.isItemEmpty(xy)) { 
+      if(expGrid.isItemEmpty(xy)) {
         expGrid.putMove(xy);
         $(this).text(expGrid.currentTurn());
       }
