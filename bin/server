@@ -1,0 +1,11 @@
+#!/usr/bin/bash
+
+if [ $1 = "UP" ]
+then # UP
+    python3 -m http.server 3000
+elif [ $1 = "DOWN" ]; then
+    # DOWN
+    killall python3
+else
+    echo "Usage: SERVER UP | DOWN"
+fi;
