@@ -1,3 +1,12 @@
+/* indexOfEvery takes an array and returns an array with some 0-indexed indexes of
+ * said array.
+ * For example:
+ *       indexOfEvery [1, 2, 3, 2, 3], 3 => [2, 4]
+           --------+->[0  1  2  3  4]    => indexes
+ *      As    for  |
+ *      0-indexed  |
+ *      we   mean.
+*/
 function indexOfEvery(array, value) {
 	var indexes = [], i;
 	for(i = 0; i < array.length; ++i) {
@@ -11,6 +20,8 @@ function indexOfEvery(array, value) {
 // 	return $(a1).not(a2).length === 0 &&
 // 		$(a2).not(a1).length === 0;
 // }
+
+
 // These should be a better (lazy) way? JSON objects might cause weird errors. TODO: testing
 function compareArrays(a1, a2) {
     return (JSON.stringify(a1) == JSON.stringify(a2));
