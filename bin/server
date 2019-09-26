@@ -1,13 +1,17 @@
 #!/usr/bin/ruby
 
-if ARGV[0].include? "UP"
-    # UP
-    `python3 -m http.server 3000 &`
-elsif ARGV[0].include? "DOWN"
+# TODO: make it multi-use i.e server DOWN UP TEST
+if ARGV.each.include? "DOWN"
     # DOWN
+    p "exec: killall python3"
     `killall python3`
+elsif ARGV.each.include? "UP"
+    # UP
+    p "exec: python3 -m http.server 3000"
+    `python3 -m http.server 3000`
+elsif ARGV.each.include? "TEST"
+    p "exec: ./node_modules/mocha/bin/mocha"
+    `./node_modules/mocha/bin/mocha`
 else
     `echo "Usage: SERVER UP | DOWN"`
 end
-
-`&`
