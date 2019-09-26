@@ -1,17 +1,20 @@
 #!/usr/bin/ruby
 
+require 'colorize'
+
 # TODO: make it multi-use i.e server DOWN UP TEST
+# TODO: add option to not use  color
 if ARGV.each.include? "DOWN"
     # DOWN
-    p "exec: killall python3"
+    puts "exec: ".red + "killall python3".white
     `killall python3`
 elsif ARGV.each.include? "UP"
     # UP
-    p "exec: python3 -m http.server 3000"
+    puts "exec: ".red + "python3 -m http.server 3000"
     `python3 -m http.server 3000`
 elsif ARGV.each.include? "TEST"
-    p "exec: ./node_modules/mocha/bin/mocha"
-    `./node_modules/mocha/bin/mocha`
+    puts "exec: ".red + "cd js; ./node_modules/mocha/bin/mocha"
+    `cd js/; ./node_modules/mocha/bin/mocha`
 else
-    `echo "Usage: SERVER UP | DOWN"`
+    puts "Usage: ".red + "SERVER UP | DOWN"
 end
