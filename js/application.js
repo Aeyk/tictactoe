@@ -9,16 +9,16 @@
  *      0-indexed  |
  *      we   mean.
 */
-// Comment it out to move it into array prototype and to test
-// function indexOfEvery(array, value) {
-// 	var indexes = [], i;
-// 	for(i = 0; i < array.length; ++i) {
-// 		if(array[i] == value) {
-// 		  indexes.push(i);
-// 		}
-// 	}
-// 	return indexes || -1;
-// }
+// Uncomment it out to test
+function indexOfEvery(array, value) {
+	var indexes = [], i;
+	for(i = 0; i < array.length; ++i) {
+		if(array[i] == value) {
+		  indexes.push(i);
+		}
+	}
+	return indexes || -1;
+}
 
 // For some reason this works if I copy into Chrome Javascript Repl
 // but it doesnt appear to be loading when the page loads. Does it have
