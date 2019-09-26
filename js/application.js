@@ -9,10 +9,24 @@
  *      0-indexed  |
  *      we   mean.
 */
-function indexOfEvery(array, value) {
+// Comment it out to move it into array prototype and to test
+// function indexOfEvery(array, value) {
+// 	var indexes = [], i;
+// 	for(i = 0; i < array.length; ++i) {
+// 		if(array[i] == value) {
+// 		  indexes.push(i);
+// 		}
+// 	}
+// 	return indexes || -1;
+// }
+
+// For some reason this works if I copy into Chrome Javascript Repl
+// but it doesnt appear to be loading when the page loads. Does it have
+// something to do with the global IIFE?
+Array.prototype.indexOfEvery = function(value) {
 	var indexes = [], i;
-	for(i = 0; i < array.length; ++i) {
-		if(array[i] == value) {
+	for(i = 0; i < this.length; ++i) {
+		if(this[i] == value) {
 		  indexes.push(i);
 		}
 	}
