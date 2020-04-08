@@ -42,8 +42,6 @@ Array.prototype.indexOfEvery = function(value) {
 function compareArrays(a1, a2) {
     return (JSON.stringify(a1) == JSON.stringify(a2));
 }
-;(function(){
-  'use strict';
 	var grid = function () {
     var _grid = [0, 0, 0,
 			     0, 0, 0,
@@ -157,4 +155,3 @@ function compareArrays(a1, a2) {
 	    location.reload();
 	  });
   });
-}());
