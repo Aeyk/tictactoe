@@ -43,20 +43,22 @@ function compareArrays(a1, a2) {
     return (JSON.stringify(a1) == JSON.stringify(a2));
 }
 var grid = function () {
-    var _grid = [0, 0, 0,
+    var _grid = [
+	0, 0, 0,
 	0, 0, 0,
 	0, 0, 0];
-    var _winners =
-	[[0, 1, 2],
-	    [3, 4, 5],
-	    [6, 7, 8],
-
-	    [0, 3, 6],
-	    [1, 4, 7],
-	    [2, 5, 8],
-
-	    [0, 4, 8],
-	    [2, 4, 6]];
+    var _winners =[
+	[0, 1, 2],
+	[3, 4, 5],
+	[6, 7, 8],
+	
+	[0, 3, 6],
+	[1, 4, 7],
+	[2, 5, 8],
+	
+	[0, 4, 8],
+	[2, 4, 6]
+    ];
     var _xsTurn = false;
     var _gameOver = false;
     var state = function() {
@@ -87,21 +89,14 @@ var grid = function () {
     }
     var isWinner = function() {
 	var xresult = [];
-	_winners
-            .forEach(
-		row => xresult.push(compareArrays(row,
-		    indexOfEvery(_grid,
-                        "X"))));
-        /* This is the same array and manipulation, it should be extracted out and named / DRY'd */
 	var oresult = [];
-	_winners
-            .forEach(
-		row => oresult.push(compareArrays(row,
-		    indexOfEvery(_grid,
-                        "O"))));
-	if(xresult.some(r => r === true))
+	_winners.forEach((row) => {
+	    xresult.push(compareArrays(row, indexOfEvery(_grid, "X")))
+	    xresult.push(compareArrays(row, indexOfEvery(_grid, "O")))
+	});
+	if(xresult.some(r => r == true))
             return "X";
-	if(oresult.some(r => r === true))
+	if(oresult.some(r => r == true))
             return "O";
 	else
             return false;
@@ -137,19 +132,18 @@ $(document).ready(function() {
 	0, 0, 0];
     
     $(".box").click(function() {
-	if(expGrid.isWinner()) {
-            $("h1").text(expGrid.isWinner() + " is the winner!");
-            scoreboard.pushWinner(expGrid.isWinner());
-            return 0;
-	}
 	if(expGrid.isGridFull()) {
             $("h1").text("Cats Game!");
             return 0;
 	}
 	var xy = $(this).index();
-	if(expGrid.isItemEmpty(xy)) {
+	if(expGrid.isItemEmpty(xy) && !expGrid.isWinner()) {
             expGrid.putMove(xy);
             $(this).text(expGrid.currentTurn());
+	}
+	if(expGrid.isWinner()) {
+            $("h1").text(expGrid.isWinner() + " is the winner!");
+            return 0;
 	}
     });
     $(".reload").click(function() {
