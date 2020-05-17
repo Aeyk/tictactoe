@@ -25,16 +25,16 @@ body {
     .box {
     }
     a > button {
-	margin-top: 3VH;
-	margin-bottom: 3VH;
-	width: 92VW;
-	height: 10VH;
-	font-size: 4VH;
+	font-size: 5vh;
+	margin: 0px 0px 20px 0px;
+
     }
     h1 {
 	width: 92VW;
 	height: 12VH;
-	font-size: 10VH;
+    }
+    .tictactoe, button, .scoreboard {
+	width: 100%;
     }
 
 }
