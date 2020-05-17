@@ -44,19 +44,19 @@ function compareArrays(a1, a2) {
 }
 var grid = function () {
     var _grid = [0, 0, 0,
-		 0, 0, 0,
-		 0, 0, 0];
+	0, 0, 0,
+	0, 0, 0];
     var _winners =
 	[[0, 1, 2],
-	 [3, 4, 5],
-	 [6, 7, 8],
+	    [3, 4, 5],
+	    [6, 7, 8],
 
-	 [0, 3, 6],
-	 [1, 4, 7],
-	 [2, 5, 8],
+	    [0, 3, 6],
+	    [1, 4, 7],
+	    [2, 5, 8],
 
-	 [0, 4, 8],
-	 [2, 4, 6]];
+	    [0, 4, 8],
+	    [2, 4, 6]];
     var _xsTurn = false;
     var _gameOver = false;
     var state = function() {
@@ -90,15 +90,15 @@ var grid = function () {
 	_winners
             .forEach(
 		row => xresult.push(compareArrays(row,
-						  indexOfEvery(_grid,
-                                                               "X"))));
+		    indexOfEvery(_grid,
+                        "X"))));
         /* This is the same array and manipulation, it should be extracted out and named / DRY'd */
 	var oresult = [];
 	_winners
             .forEach(
 		row => oresult.push(compareArrays(row,
-						  indexOfEvery(_grid,
-                                                               "O"))));
+		    indexOfEvery(_grid,
+                        "O"))));
 	if(xresult.some(r => r === true))
             return "X";
 	if(oresult.some(r => r === true))
@@ -133,8 +133,9 @@ var grid = function () {
 $(document).ready(function() {
     var expGrid = grid;
     var playingGrid = [0, 0, 0,
-                       0, 0, 0,
-		       0, 0, 0];
+        0, 0, 0,
+	0, 0, 0];
+    
     $(".box").click(function() {
 	if(expGrid.isWinner()) {
             $("h1").text(expGrid.isWinner() + " is the winner!");
