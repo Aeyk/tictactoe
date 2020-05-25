@@ -132,15 +132,16 @@ $(document).ready(function() {
 	0, 0, 0];
     
     $(".box").click(function() {
-	console.log(expGrid.state());
-	if(expGrid.isGridFull()) {
-            $("h1").text("Cats Game!");
-            return 0;
-	}
 	var xy = $(this).index();
 	if(expGrid.isItemEmpty(xy) && !expGrid.isWinner()) {
             expGrid.putMove(xy);
             $(this).text(expGrid.currentTurn());
+	}
+	console.log(expGrid.state());
+
+	if(expGrid.isGridFull()) {
+            $("h1").text("Cats Game!");
+            return 0;
 	}
 	if(expGrid.isWinner()) {
             $("h1").text(expGrid.isWinner() + " is the winner!");
