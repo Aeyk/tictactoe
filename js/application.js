@@ -62,7 +62,7 @@ var grid = function () {
     var _xsTurn = false;
     var _gameOver = false;
     var state = function() {
-	return {..._grid};
+	return [..._grid];
     };
     var nextTurn = function () {
 	_xsTurn = !_xsTurn;
@@ -132,6 +132,7 @@ $(document).ready(function() {
 	0, 0, 0];
     
     $(".box").click(function() {
+	console.log(expGrid.state());
 	if(expGrid.isGridFull()) {
             $("h1").text("Cats Game!");
             return 0;
