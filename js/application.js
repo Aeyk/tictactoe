@@ -137,8 +137,6 @@ $(document).ready(function() {
             expGrid.putMove(xy);
             $(this).text(expGrid.currentTurn());
 	}
-	console.log(expGrid.state());
-
 	if(expGrid.isGridFull()) {
             $("h1").text("Cats Game!");
             return 0;
